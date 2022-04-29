@@ -213,11 +213,17 @@ public class GlCameraPreview extends CameraPreview<GLSurfaceView, SurfaceTexture
 
             // For Camera2, apply the draw rotation.
             // See TextureCameraPreview.setDrawRotation() for info.
+            mDrawRotation = 0;
             if (mDrawRotation != 0) {
                 Matrix.translateM(transform, 0, 0.5F, 0.5F, 0);
-                Matrix.rotateM(transform, 0, mDrawRotation, 0, 0, 1);
+                Matrix.rotateM(transform, 0, mDrawRotation, 0, 1, 0);
                 Matrix.translateM(transform, 0, -0.5F, -0.5F, 0);
             }
+
+            //处理镜像
+            Matrix.translateM(transform, 0, 0.5F, 0.5F, 0);
+            Matrix.rotateM(transform, 0, 180, 0, 1, 0);
+            Matrix.translateM(transform, 0, -0.5F, -0.5F, 0);
 
             if (isCropping()) {
                 // Scaling is easy, but we must also translate before:
