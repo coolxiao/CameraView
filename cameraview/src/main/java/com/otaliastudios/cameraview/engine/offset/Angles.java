@@ -84,9 +84,9 @@ public class Angles {
     public int offset(@NonNull Reference from, @NonNull Reference to, @NonNull Axis axis) {
         int offset = absoluteOffset(from, to);
         if (axis == Axis.RELATIVE_TO_SENSOR) {
-            if (mSensorFacing == Facing.FRONT) {
+//            if (mSensorFacing == Facing.FRONT) {
                 offset = sanitizeOutput(360 - offset);
-            }
+//            }
         }
         return offset;
     }
